@@ -1,0 +1,115 @@
+/* Chat.css */
+.chat-container {
+    display: flex;
+    height: 100vh; /* Imposta l'altezza a tutto schermo */
+    max-height: 100vh; /* Evita che sia più lungo dello schermo */
+    overflow: hidden; /* Nasconde qualsiasi contenuto che supera il contenitore */
+    background-color: #f0f0f0;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-link {
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-link-icon {
+    margin-right: 10px;
+    /* Aggiungi stili per l'icona qui */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    margin-right: 10px;
+    /* Aggiungi stili per l'icona dell'utente qui */
+}
+
+.grs-gpt-container {
+    flex-grow: 1; /* Occupa lo spazio rimanente */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Evita overflow interno */
+}
+
+.grs-gpt-chatbox {
+    flex-grow: 1; /* Occupa lo spazio disponibile */
+    overflow-y: auto; /* Permette lo scroll se necessario */
+    padding: 10px;
+    background-color: #585886;
+}
+
+.grs-gpt-input {
+    display: flex;
+}
+
+.grs-gpt-input input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.grs-gpt-input button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.grs-gpt-input button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #e9e9e9;
+    border-radius: 4px;
+}
+
+.message.user {
+    background-color: #d1e7ff;
+}
+
+.input-icons {
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    cursor: pointer;
+    /* Aggiungi stili per le icone di input qui */
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .grs-gpt-container {
+        height: calc(100vh - altezza della sidebar);
+    }
+}

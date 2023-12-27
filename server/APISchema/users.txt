@@ -1,0 +1,8 @@
+//create user admin curl
+curl -X POST http://localhost:3000/user/create-admin -H "Content-Type: application/json" -d '{"FirstName": "Luca", "LastName" : "Biordi", "DateOfBirth" : "29/06/1984", "username": "luca.biordi@infosalons.ae", "email": "luca.biordi@infosalons.ae", "password": "UnaPasswordCasuale#123"}'
+
+//login
+
+
+//check token
+curl -X GET http://localhost:3000/api/protected/token-check -H "Authorization: Bearer eyJraWQiOiJ5ODFjREdZMUNISmtuT052Qmg1K1VcL1hpbkRnT2NqU2htWUttY1c4NFpBWT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0MDdhNDY1YS0xNzk3LTQ3MWMtOGE3Zi0wMmQyMDgxOTZiNDciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtY2VudHJhbC0xLmFtYXpvbmF3cy5jb21cL2V1LWNlbnRyYWwtMV9XeVZOdmFFUVciLCJ2ZXJzaW9uIjoyLCJjbGllbnRfaWQiOiIyYmxhZm1sdnZ1dnBuanEyMjRkc3ZnY3QydiIsIm9yaWdpbl9qdGkiOiJjZmYxZWUxOC01OWZmLTRiMjUtOTc4MS0wYzRmYjU4MWQ1NTIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIHBob25lIG9wZW5pZCBwcm9maWxlIGVtYWlsIiwiYXV0aF90aW1lIjoxNzAxNDI4NTU3LCJleHAiOjE3MDE0MzIxNTcsImlhdCI6MTcwMTQyODU1NywianRpIjoiYTAwMzE2ZGItZjVjMi00YjFiLWI2ZDYtMDNkZGJhM2JmNDU5IiwidXNlcm5hbWUiOiI0MDdhNDY1YS0xNzk3LTQ3MWMtOGE3Zi0wMmQyMDgxOTZiNDcifQ.VwJKPuEUDhk-9efQ38VHZ3AtFvJLwyfZx-CnQhnJdP71wfTE0_XzNolPeHLv8j9jen2szX4GqjAIC4GKIYLzXedRdKLA0Aw3ZqGvSv-GcJTk8iN55kAZ2u3sLKlDoFr0KrhdPJG-hZ0C-2qrt35AXPqHXd-xGPk6UY2G9h5rZBj9FwSw4exF9ZRgg8aR5vCayXevH6-mNmWcIcX19OvQ4x-sez51K8YRkj-R1E6kuHQ1KQ-vFL5YNfM2I9RzomwaSJzEH2zh_jO3alntDwKJDD2puMO6_-PqjM2SlCsuuy5gqule5jMDirqlo4IHO8G5gMRrfPX-8p_JDLyyfKgi4A"

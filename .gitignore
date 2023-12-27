@@ -1,0 +1,15 @@
+# Node Dependencies
+/client/node_modules/
+/server/node_modules/
+
+# log Files
+*.log
+
+# OS Directory
+.DS_Store
+Thumbs.db
+
+# Other potential files to ignore
+# .env
+# dist/
+# build/

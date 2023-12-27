@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ChatGPT Clone in JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="script.js" defer></script>
+    
+  </head>
+  <body>
+    
+    <div class="main-container">
+      <div class="sidebar">
+          <a href="#" class="sidebar-link">
+            <img src='./img/user.png' alt="Avatar" class="sidebar-link-avatar">
+            <span class="">Data Analyst Senior Assistant</span>
+          </a>
+          <a href="#" class="sidebar-link">
+            <img src='./img/user.png' alt="Avatar" class="sidebar-link-avatar">
+            <span class="">Linkedin Assistant</span>
+          </a>
+          <a href="#" class="sidebar-link">
+            <img src='./img/user.png' alt="Avatar" class="sidebar-link-avatar">
+            <span class="">Code Companion</span>
+          </a>
+          <!-- Altri link vanno qui -->
+          <div class="user-section">
+              <a href="#" class="user-block">
+                  <img src='./img/user.png' alt="Avatar" class="user-avatar">
+                  <span class="user-link">Nome Utente</span>
+              </a>
+              <div class="dropdown-menu">
+                <a href="#" class="menu-item">Link 1</a>
+                <a href="#" class="menu-item">Link 2</a>
+                <a href="#" class="menu-item">Link 3</a>
+                <!-- Altri link del menu vanno qui -->
+            </div>
+          </div>
+          <div class="resize-handle"></div>
+      </div>
+      <div class="content-container">
+        <header class="main-header">
+          <div class="logo-container">
+              <img src="./img/chat.png" alt="Logo Azienda" class="company-logo">
+          </div>
+          <div class="logout-container">
+              <button class="logout-button">Logout</button>
+          </div>
+        </header>
+        <!-- Chats container -->
+        <div class="chat-container"></div>
+        
+        <!-- Typing container -->
+        <div class="typing-container">
+          <div class="typing-content">
+            <div class="typing-controls margin-right">
+              <span id="attach-btn" class="material-symbols-rounded">attach_file</span>
+            </div>
+            <div class="typing-textarea">
+              <textarea id="chat-input" spellcheck="false" placeholder="Enter a prompt here" required></textarea>
+              <span id="send-btn" class="material-symbols-rounded">send</span>
+            </div>
+            <div class="typing-controls">
+              <span id="theme-btn" class="material-symbols-rounded">light_mode</span>
+              <span id="delete-btn" class="material-symbols-rounded">delete</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const userBlock = document.querySelector('.user-block');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        userBlock.addEventListener('click', function(event) {
+            // Previeni la propagazione per evitare che il document listener lo catturi immediatamente
+            event.stopPropagation();
+            // Toggle della visualizzazione del menu
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Ascoltatore di eventi per tutto il documento
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = dropdownMenu.contains(event.target);
+            const isClickOnUserBlock = userBlock.contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnUserBlock) {
+                // Chiudi il menu se il clic è fuori dall'area del menu e del user-block
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidebar = document.querySelector('.sidebar');
+        const typingContainer = document.querySelector('.typing-container');
+        const chatInput = document.getElementById('chat-input');
+        const handle = document.querySelector('.resize-handle');
+
+        handle.addEventListener('mousedown', (event) => {
+            document.addEventListener('mousemove', resizeSidebar);
+            document.addEventListener('mouseup', stopResize);
+        });
+
+        function resizeSidebar(event) {
+            const newWidth = event.clientX - sidebar.getBoundingClientRect().left;
+            if (newWidth > 100 && newWidth < 400) {
+                sidebar.style.width = newWidth + 'px';
+                updateTypingContainer(newWidth);
+            }
+        }
+
+        function stopResize() {
+            document.removeEventListener('mousemove', resizeSidebar);
+            document.removeEventListener('mouseup', stopResize);
+        }
+
+        function updateTypingContainer(sidebarWidth) {
+            typingContainer.style.left = sidebarWidth + 'px';
+            chatInput.style.width = `calc(100% - ${sidebarWidth}px - 100px)`; // 100px è uno spazio approssimativo per i bottoni
+        }
+    });
+    </script>
+  </body>
+</html>

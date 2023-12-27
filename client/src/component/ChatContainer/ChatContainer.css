@@ -1,0 +1,32 @@
+/* Stile per il messaggio "Done!" */
+.copy-confirm {
+    position: absolute;
+    bottom: 100%; /* Posiziona sopra l'icona */
+    right: 100%; /* Sposta a sinistra dell'icona */
+    transform: translateX(10px); /* Regola per posizionare correttamente il fumetto */
+    background-color: #000; /* Sfondo nero, cambia a seconda del tema */
+    color: #fff; /* Testo bianco, cambia a seconda del tema */
+    padding: 2px 6px; /* Imbottitura ridotta intorno al testo */
+    border-radius: 4px; /* Angoli leggermente più arrotondati */
+    font-size: 0.6rem; /* Riduci ulteriormente la dimensione del testo */
+    white-space: nowrap; /* Impedisce al testo di andare a capo */
+    z-index: 1; /* Assicurati che si sovrapponga agli altri elementi */
+
+    /* Stile per la freccia del fumetto */
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%; /* Centra la freccia verticalmente */
+        left: 100%; /* Posiziona la freccia sulla destra del fumetto */
+        border-width: 4px; /* Riduci la dimensione della freccia */
+        border-style: solid;
+        border-color: transparent transparent transparent #000; /* Triangolo nero */
+        transform: translateY(-50%) translateX(-2px); /* Ajusta la posizione della freccia */
+    }
+}
+
+/* Stile per il contenitore che include l'icona di copia e il messaggio */
+.chat-content div {
+    position: relative;
+    display: inline-block;
+}

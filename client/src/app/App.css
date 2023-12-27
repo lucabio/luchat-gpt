@@ -1,0 +1,506 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --text-color: #FFFFFF;
+  --icon-color: #ACACBE;
+  --icon-hover-bg: #5b5e71;
+  --placeholder-color: #dcdcdc;
+  --outgoing-chat-bg: #343541;
+  --incoming-chat-bg: #444654;
+  --outgoing-chat-border: #343541;
+  --incoming-chat-border: #444654;
+}
+.light-mode {
+  --text-color: #343541;
+  --icon-color: #a9a9bc;
+  --icon-hover-bg: #f1f1f3;
+  --placeholder-color: #6c6c6c;
+  --outgoing-chat-bg: #FFFFFF;
+  --incoming-chat-bg: #F7F7F8;
+  --outgoing-chat-border: #FFFFFF;
+  --incoming-chat-border: #D9D9E3;
+}
+body {
+  background: var(--outgoing-chat-bg);
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+}
+
+.content-container {
+  flex-grow: 1; /* Occupa lo spazio rimanente */
+  overflow: hidden; /* Aggiungi se necessario per gestire lo scroll */
+  position: relative; /* Importante per posizionare l'header */
+  /* Stili per il contenuto, come padding o margin... */
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f3f3f3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Cambiato da fixed ad absolute */
+  width: 100%; /* Larghezza al 100% del contenitore padre */
+  top: 0;
+  z-index: 1001;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  /* Assicurati che non ci siano regole che fissano la larghezza o la posizione */
+}
+
+.company-logo {
+    height: 40px; /* Regola l'altezza secondo necessità */
+    width: auto; /* Mantiene le proporzioni dell'immagine */
+}
+
+.logout-button {
+    padding: 10px 15px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #c9302c;
+}
+
+.user-section {
+  position: relative;
+  /* Resto delle regole per .user-section */
+}
+
+.user-block {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px; /* Angoli arrotondati */
+  text-decoration: none;
+  color: white; /* Colore del testo */
+  background-color: #000; /* Sfondo scuro */
+  transition: background-color 0.3s; /* Transizione per l'hover */
+}
+
+.user-avatar {
+  width: 40px; /* Regola la dimensione come preferisci */
+  height: 40px; /* Regola la dimensione come preferisci */
+  border-radius: 50%; /* Rende l'immagine rotonda */
+  margin-right: 10px; /* Spazio tra l'immagine e il testo */
+  object-fit: cover;
+}
+
+.user-block:hover {
+  background-color: #333; /* Colore più chiaro allo stato hover */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  bottom: 110%;
+  left: 0;
+  right: 0; /* Aggiunto per assicurare che si estenda fino al bordo destro */
+  width: 100%; /* Imposta la larghezza sul 100% del suo contenitore */
+  background-color: #333;
+  min-width: 160px;
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.menu-item {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #474747;
+  transition: background-color 0.3s; /* Transizione per l'hover */
+}
+
+.menu-item:first-child {
+  border-top-left-radius: 8px; /* Arrotonda l'angolo in alto a sinistra */
+  border-top-right-radius: 8px; /* Arrotonda l'angolo in alto a destra */
+}
+
+.menu-item:last-child {
+  border-bottom-left-radius: 8px; /* Arrotonda l'angolo in basso a sinistra */
+  border-bottom-right-radius: 8px; /* Arrotonda l'angolo in basso a destra */
+  border-bottom: none; /* Rimuove il bordo dall'ultimo elemento */
+}
+
+.menu-item:hover {
+  background-color: #474747; /* Colore di sfondo per l'hover */
+}
+
+/* Chats container styling */
+.chat-container {
+  overflow-y: auto;
+  max-height: 100vh;
+  padding-bottom: 150px;
+  padding-top: 50px;
+  padding-left: 10px; /* Aggiunto per dare più spazio a sinistra */
+  padding-right: 10px; /* Aggiunto per dare più spazio a destra */
+}
+:where(.chat-container, textarea)::-webkit-scrollbar {
+  width: 6px;
+}
+:where(.chat-container, textarea)::-webkit-scrollbar-track {
+  background: var(--incoming-chat-bg);
+  border-radius: 25px;
+}
+:where(.chat-container, textarea)::-webkit-scrollbar-thumb {
+  background: var(--icon-color);
+  border-radius: 25px;
+}
+.default-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+  padding: 0 10px;
+  text-align: center;
+  color: var(--text-color);
+}
+.default-text h1 {
+  font-size: 3.3rem;
+}
+.default-text p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+.chat-container .chat {
+  padding: 25px 10px;
+  display: flex;
+  justify-content: center;
+  color: var(--text-color);
+}
+.chat-container .chat.outgoing {
+  background: var(--outgoing-chat-bg);
+  border: 1px solid var(--outgoing-chat-border);
+}
+.chat-container .chat.incoming {
+  background: var(--incoming-chat-bg);
+  border: 1px solid var(--incoming-chat-border);
+}
+.chat .chat-content {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+span.material-symbols-rounded {
+  user-select: none;
+  cursor: pointer;
+}
+.chat .chat-content span {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--icon-color);
+  visibility: hidden;
+}
+.chat:hover .chat-content:not(:has(.typing-animation), :has(.error)) span {
+  visibility: visible;
+}
+.chat .chat-details {
+  display: flex;
+  align-items: center;
+}
+.chat .chat-details img {
+  width: 35px;
+  height: 35px;
+  align-self: flex-start;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.chat .chat-details p {
+  white-space: pre-wrap;
+  font-size: 1.05rem;
+  padding: 0 50px 0 25px;
+  color: var(--text-color);
+  word-break: break-word;
+}
+.chat .chat-details p.error {
+  color: #e55865;
+}
+.chat .typing-animation {
+  padding-left: 25px;
+  display: inline-flex;
+}
+.typing-animation .typing-dot {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  margin: 0 3px;
+  opacity: 0.7;
+  background: var(--text-color);
+  animation: animateDots 1.5s var(--delay) ease-in-out infinite;
+}
+.typing-animation .typing-dot:first-child {
+  margin-left: 0;
+}
+@keyframes animateDots {
+  0%,44% {
+    transform: translateY(0px);
+  }
+  28% {
+    opacity: 0.4;
+    transform: translateY(-6px);
+  }
+  44% {
+    opacity: 0.2;
+  }
+}
+
+/* Typing container styling */
+.typing-container {
+  position: fixed;
+  bottom: 0;
+  left: 200px; /* Larghezza iniziale della sidebar */
+  right: 0;
+  display: flex;
+  padding: 20px 10px;
+  justify-content: center;
+  background: var(--outgoing-chat-bg);
+  border-top: 1px solid var(--incoming-chat-border);
+  box-sizing: border-box; /* Assicurati che il padding sia incluso nella larghezza */
+}
+
+.typing-container .typing-content {
+  display: flex;
+  max-width: calc(100% - 200px); /* Adatta alla larghezza della sidebar */
+  width: 100%;
+  align-items: flex-end;
+}
+
+.typing-container .typing-textarea {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+.typing-textarea textarea {
+  resize: none;
+  height: 55px;
+  width: 100%;
+  border: none;
+  padding: 15px 45px 15px 20px;
+  color: var(--text-color);
+  font-size: 1rem;
+  border-radius: 4px;
+  max-height: 250px;
+  overflow-y: auto;
+  background: var(--incoming-chat-bg);
+  outline: 1px solid var(--incoming-chat-border);
+}
+.typing-textarea textarea::placeholder {
+  color: var(--placeholder-color);
+}
+.typing-content span {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  border-radius: 4px;
+  font-size: 1.35rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-color);
+}
+.typing-textarea span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  visibility: hidden;
+}
+.typing-textarea textarea:valid ~ span {
+  visibility: visible;
+}
+.typing-controls {
+  display: flex;
+}
+.typing-controls span {
+  margin-left: 7px;
+  font-size: 1.4rem;
+  background: var(--incoming-chat-bg);
+  outline: 1px solid var(--incoming-chat-border);
+}
+
+.typing-controls span:hover {
+  background: var(--icon-hover-bg);
+}
+
+.margin-right {
+  margin-right: 7px;
+}
+
+/* Stili per la Barra Laterale */
+.sidebar {
+    left: 0;
+    top: 0;
+    width: 200px; /* Larghezza iniziale */
+    height: 100vh; /* Altezza pari all'intera altezza della viewport */
+    background-color: #000; /* Colore di sfondo nero */
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000; /* Assicurarsi che la barra laterale sia sopra gli altri elementi */
+    position: relative; /* Importante per posizionare la maniglia */
+    min-width: 100px; /* Larghezza minima */
+    max-width: 400px; /* Larghezza massima */
+    resize: horizontal;
+    overflow: hidden;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px; /* Larghezza della maniglia */
+  cursor: ew-resize; /* Cambia il cursore per indicare la ridimensionabilità */
+  background-color: #ccc; /* Colore della maniglia */
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px; /* Dimensioni ridotte rispetto ai menu-item */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px; /* Angoli arrotondati */
+    margin: 5px 0; /* Spazio tra i link */
+    overflow: hidden; /* Nasconde il testo che fuoriesce */
+    font-size: 14px;
+}
+
+.sidebar-link:hover {
+    background-color: #333; /* Colore di sfondo per l'hover */
+}
+
+.sidebar-link-avatar {
+  width: 20px; /* Dimensione dell'avatar */
+  height: 20px; /* Dimensione dell'avatar */
+  border-radius: 50%; /* Rende l'avatar rotondo */
+  margin-right: 10px; /* Spazio tra l'avatar e il testo */
+}
+
+.sidebar-link span {
+  white-space: nowrap; /* Impedisce al testo di andare a capo */
+  text-overflow: ellipsis; /* Aggiunge puntini di sospensione se il testo è troppo lungo */
+  overflow: hidden; /* Nasconde il testo che fuoriesce */
+  display: block; /* Fa sì che il testo prenda tutta la larghezza disponibile */
+  max-width: calc(100% - 40px); /* Larghezza massima del testo tenendo conto dell'avatar */
+}
+
+/* Ajuste del layout per il contenuto principale */
+.chat-container .typing-container{
+    margin-left: 0; /* Spazio per la barra laterale */
+}
+
+.user-section {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 40px; /* Regola la dimensione come preferisci */
+    height: 40px; /* Regola la dimensione come preferisci */
+    border-radius: 50%; /* Rende l'immagine rotonda */
+    margin-right: 10px; /* Spazio tra l'immagine e il testo */
+    object-fit: cover; /* Assicura che l'immagine mantenga le proporzioni */
+}
+
+.user-link {
+    color: #fff; /* Colore del testo bianco */
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.user-link:hover {
+    text-decoration: none; /* Effetto al passaggio del mouse */
+}
+
+/* Reponsive Media Query */
+@media screen and (max-width: 600px) {
+    .main-header {
+        width: 100%;
+        left: 0;
+    }
+
+    .body {
+        padding-top: 60px; /* Spazio per l'header su dispositivi mobili */
+    }
+    .sidebar {
+        width: 150px; /* Ridurre la larghezza per dispositivi più piccoli */
+    }
+
+    .chat-container {
+        margin-left: 150px;
+    }
+
+    /* Ridimensionamento della barra laterale in modalità mobile */
+    .sidebar-link {
+        font-size: 14px; /* Ridurre la dimensione del testo per dispositivi più piccoli */
+        padding: 8px;
+    }
+
+    .default-text h1 {
+        font-size: 2.3rem;
+    }
+    :where(.default-text p, textarea, .chat p) {
+        font-size: 0.95rem!important;
+    }
+    .chat-container .chat {
+        padding: 20px 10px;
+    }
+    .chat-container .chat img {
+        height: 32px;
+        width: 32px;
+    }
+    .chat-container .chat p {
+        padding: 0 20px;
+    }
+    .chat .chat-content:not(:has(.typing-animation), :has(.error)) span {
+        visibility: visible;
+    }
+    .typing-container {
+        padding: 15px 10px;
+        left: 150px;
+    }
+
+    .typing-container .typing-content {
+      max-width: calc(100% - 150px); /* Adatta alla larghezza della sidebar ridotta */
+    }
+
+    .typing-textarea textarea {
+        height: 45px;
+        padding: 10px 40px 10px 10px;
+    }
+    .typing-content span {
+        height: 45px;
+        width: 45px;
+        margin-left: 5px;
+    }
+    span.material-symbols-rounded {
+        font-size: 1.25rem!important;
+    }
+}
+
