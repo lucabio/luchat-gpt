@@ -1,7 +1,7 @@
 // src/api.js
 
 const API_URL = process.env.REACT_APP_API_URL;
-const API_KEY = "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";  // Considera di spostare questo in una variabile d'ambiente
+const API_KEY = process.env.OPENAI_API_KEY;  // Considera di spostare questo in una variabile d'ambiente
 
 const getChatResponse = async (userText) => {
     const requestOptions = {
